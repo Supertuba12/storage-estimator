@@ -1,3 +1,7 @@
+package strategy;
+
+import java.util.List;
+
 /**
  * Strategy for estimating the storage size of a BMP image. The strategy takes
  * into account that a BMP image can be of a pyramid level type when
@@ -6,10 +10,13 @@
  * @author Hampus Eriksson
  *
  */
-public class BMPStrategy implements ImageStrategy {
+public class BMPStrategy extends ImageStrategy {
 	
 	@Override
-	public long estimateStorage(int width, int height) {
+	public void estimateStorage(List<Integer> dimensions, List<Long> images) {
+		int width = dimensions.get(0);
+		int height = dimensions.get(1);
+		
 		long estimatedStorage = 0;
 		do {
 			estimatedStorage += width * height; 
@@ -17,7 +24,7 @@ public class BMPStrategy implements ImageStrategy {
 			height = height/2;
 		} while(width >= 128 && height >= 128);
 		
-		return estimatedStorage;
+		images.add(estimatedStorage);
 	}
 
 }
