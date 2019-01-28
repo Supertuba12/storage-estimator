@@ -1,6 +1,7 @@
 package strategy;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Strategy for estimating the storage size of a BMP image. The strategy takes
@@ -13,18 +14,23 @@ import java.util.List;
 public class BMPStrategy extends ImageStrategy {
 	
 	@Override
-	public void estimateStorage(List<Integer> dimensions, List<Long> images) {
+	public void estimateStorage(List<Integer> dimensions, Map<Integer, Long> images) {
 		int width = dimensions.get(0);
 		int height = dimensions.get(1);
 		
-		long estimatedStorage = 0;
-		do {
-			estimatedStorage += width * height; 
-			width = width/2;
-			height = height/2;
-		} while(width >= 128 && height >= 128);
-		
-		images.add(estimatedStorage);
+		if(width > 0 && height > 0) {
+			long estimatedStorage = 0;
+			do {
+				estimatedStorage += width * height; 
+				width = width/2;
+				height = height/2;
+			} while(width >= 128 && height >= 128);
+			
+			images.put(images.size() + 1, estimatedStorage);
+		} else {
+			System.out.println("Could not estimate storage for BMP."
+					+ " Dimensions must be positive.");
+		}
 	}
 
 }

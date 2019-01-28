@@ -6,6 +6,15 @@ import strategy.JPEG2000Strategy;
 import strategy.JPEGStrategy;
 import strategy.GroupStrategy;
 
+
+/**
+ * Enumeration class with enum values for each type of image.
+ * Each enum has a name as well as a corresponding strategy 
+ * class used to estimate the image's storage size.
+ * 
+ * @author Hampus Eriksson
+ *
+ */
 public enum Image {
 	J("J" , new JPEGStrategy()),
 	JPG("JPG", new JPEGStrategy()),
@@ -25,10 +34,5 @@ public enum Image {
 	public ImageStrategy getStrategy() {
 		return this.strategy;
 	}
-	
-	public String getName() {
-		return this.name;
-	}
- 	
 	
 }
