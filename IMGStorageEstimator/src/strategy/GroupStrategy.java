@@ -1,8 +1,9 @@
 package strategy;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 /**
@@ -42,30 +43,35 @@ public class GroupStrategy extends ImageStrategy {
 	 * @param images: A map containing current image size estimations.
 	 * @return
 	 */
-	private Map<Integer, Long> removeImages(List<Integer> indices, Map<Integer, Long> images){
-		for(int index : indices) {
-			images.remove(index);
-		}
-		return images;
+	private void removeImages(List<Integer> indices, List<Long> images){
+		
+		indices.stream()
+	        .sorted(Comparator.reverseOrder())
+	        .mapToInt(Integer::intValue)
+	        .forEach(images::remove);
 	}
 	
 	
-	public void estimateStorage(List<Integer> indices, Map<Integer, Long> images) {
+	public void estimateStorage(List<Integer> indices, List<Long> images) {
 		if(!containsDuplicates(indices)) {
-			int numberOfImages = images.size();
 			double divisor = indices.size() + 3.0;
 			long dividend = 0;
+			
+			int numberOfImages = images.size();
+			List<Integer> realIndices = new ArrayList<Integer>();
+			
 			for(int index: indices) {
 				if(index > 0 && index <= numberOfImages) {
-					dividend += images.get(index);
+					dividend += images.get(index - 1);
+					realIndices.add(index - 1);
 				} else {
 					System.out.println("Invalid input, index is out of range.");
 					return;
 				}
 			}
-			images = removeImages(indices, images);
+			removeImages(realIndices, images);
 			long estimatedStorage = (long) (dividend / Math.log(divisor));
-			images.put(numberOfImages + 1, estimatedStorage);
+			images.add(estimatedStorage);
 		} else {
 			System.out.println("Invalid input, cannot stack the same image.");
 			return;

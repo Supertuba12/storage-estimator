@@ -1,7 +1,6 @@
 package strategy;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * Controller class used to execute strategies given a type.
@@ -19,7 +18,7 @@ public class ImageContext {
 	}
 	
 	
-	public void execute(List<Integer> values, Map<Integer, Long> images) {
+	public void execute(List<Integer> values, List<Long> images) {
 		this.strategy.estimateStorage(values, images);
 	}
 

@@ -55,10 +55,10 @@ public class Client {
 	 * estimation.
 	 * @return The function returns the total storage estimation.
 	 */
-	private static long calculateTotalStorage(Map<Integer, Long> images) {
+	private static long calculateTotalStorage(List<Long> images) {
 		
 		long totalSize = 0;
-		for(Long imageSize : images.values()) {
+		for(Long imageSize : images) {
 			totalSize += imageSize;
 		}
 		
@@ -77,7 +77,7 @@ public class Client {
 		
 		final String DELIMITERS = "\\s*(\\s|,)\\s*";
 		
-		Map<Integer, Long> images = new HashMap<Integer, Long>();
+		List<Long> images = new ArrayList<Long>();
 		
 		Scanner reader = new Scanner(System.in);
 		

@@ -3,9 +3,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -19,7 +17,7 @@ import strategy.JPEG2000Strategy;
 class JPEG2000StrategyTest {
 
 	static JPEG2000Strategy instance;
-	static Map<Integer, Long> images;
+	static List<Long> images;
 	static List<Integer> dimensions;
 	
 	private final static ByteArrayOutputStream outContent = new ByteArrayOutputStream();
@@ -36,8 +34,8 @@ class JPEG2000StrategyTest {
  
     @BeforeEach
     void beforeEach() {
-        images = new HashMap<Integer, Long>();
-        dimensions = new ArrayList<Integer>();
+    	images = new ArrayList<Long>();
+    	dimensions = new ArrayList<Integer>();
         outContent.reset();
     }
  
@@ -58,7 +56,7 @@ class JPEG2000StrategyTest {
         instance.estimateStorage(dimensions, images);
         
         assertEquals(1, images.size());
-        assertEquals(2883, images.get(1).longValue());
+        assertEquals(2883, images.get(0).longValue());
     }
  
     @Test
@@ -69,7 +67,7 @@ class JPEG2000StrategyTest {
         instance.estimateStorage(dimensions, images);
         
         assertEquals(1, images.size());
-        assertEquals(313240, images.get(1).longValue());
+        assertEquals(313240, images.get(0).longValue());
         
     }
     

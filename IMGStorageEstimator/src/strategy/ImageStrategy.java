@@ -1,7 +1,6 @@
 package strategy;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * Interface class for strategies.
@@ -19,5 +18,5 @@ public abstract class ImageStrategy {
 	 * @param values: A list containing image information values.
 	 * @param images: A collection of image size estimations.
 	 */
-	public void estimateStorage(List<Integer> values, Map<Integer, Long> images) {}
+	public void estimateStorage(List<Integer> values, List<Long> images) {}
 }

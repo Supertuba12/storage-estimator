@@ -1,7 +1,6 @@
 package strategy;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * Strategy for estimating the storage size of a JPEG image. The strategy takes
@@ -14,7 +13,7 @@ import java.util.Map;
 public class JPEGStrategy extends ImageStrategy {
 	
 	@Override
-	public void estimateStorage(List<Integer> dimensions, Map<Integer, Long> images) {
+	public void estimateStorage(List<Integer> dimensions, List<Long> images) {
 		int width = dimensions.get(0);
 		int height = dimensions.get(1);
 		
@@ -27,7 +26,7 @@ public class JPEGStrategy extends ImageStrategy {
 				height = height/2;
 			} while(width >= 128 && height >= 128);
 			 
-			images.put(images.size() + 1, estimatedStorage);
+			images.add(estimatedStorage);
 		} else {
 			System.out.println("Could not estimate storage for JPEG."
 					+ " Dimensions must be positive.");

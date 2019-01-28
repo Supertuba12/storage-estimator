@@ -3,9 +3,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -19,7 +17,7 @@ import strategy.BMPStrategy;
 class BMPStrategyTest {
 
 	static BMPStrategy instance;
-	static Map<Integer, Long> images;
+	static List<Long> images;
 	static List<Integer> dimensions;
 	
 	private final static ByteArrayOutputStream outContent = new ByteArrayOutputStream();
@@ -36,7 +34,7 @@ class BMPStrategyTest {
  
     @BeforeEach
     void beforeEach() {
-        images = new HashMap<Integer, Long>();
+        images = new ArrayList<Long>();
         dimensions = new ArrayList<Integer>();
         outContent.reset();
     }
@@ -58,7 +56,7 @@ class BMPStrategyTest {
         instance.estimateStorage(dimensions, images);
         
         assertEquals(1, images.size());
-        assertEquals(16384, images.get(1).longValue());
+        assertEquals(16384, images.get(0).longValue());
     }
  
     @Test
@@ -69,7 +67,7 @@ class BMPStrategyTest {
         instance.estimateStorage(dimensions, images);
         
         assertEquals(1, images.size());
-        assertEquals(2785280, images.get(1).longValue());
+        assertEquals(2785280, images.get(0).longValue());
         
     }
     
