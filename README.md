@@ -21,7 +21,7 @@ The program will continue to read commands until the user issues a command __Q/q
 ## Design 
 For the assignment at hand the _strategy pattern_ seemed as an appropriate choice, since the task involved executing a specific algorithm, depending on which type of image was given by the user. 
 
-![UML class diagram of the Image Estimator program.](storage-estimator/IMGStorageEstimator/IMGStorageEstimatorUML.png)
+![UML class diagram of the Image Estimator program.](https://github.com/Supertuba12/storage-estimator/blob/master/IMGStorageEstimator/IMGStorageEstimatorUML.png)
 
 The class _Client_ contains the main method from which the CLI is initiated. It will read from the standard input, and use the first argument to try to instantiate the correct _Image_ enumeration type. Arguments following the first are considered to be either dimension values _width_ and _height_ for the image, or index values for the grouping of images. 
 
